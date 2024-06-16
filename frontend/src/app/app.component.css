@@ -1,0 +1,88 @@
+/*.image-key {*/
+/*  !*max-width: 500px;*!*/
+/*  !*margin: auto;*!*/
+/*  !*padding: 20px;*!*/
+
+/*  !*border-radius: 5px;*!*/
+/*  !*display: flex;*!*/
+/*  !*flex-direction: column;*!*/
+/*  !*justify-content: center;*!*/
+/*  !*align-items: center;*!*/
+/*  !*text-align: center;*!*/
+/*  color: black;*/
+/*  margin-top: 15%;*/
+
+
+
+
+/*}*/
+
+/*!*.form-group {*!*/
+/*!*  margin-bottom: 15px;*!*/
+/*!*}*!*/
+
+/*!*.preview-image {*!*/
+/*!*  max-width: 100%;*!*/
+/*!*  height: auto;*!*/
+/*!*  margin-top: 10px;*!*/
+/*!*}*!*/
+
+
+
+
+.image-key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.image-key h2 {
+  font-size: 2em; /* Increase the font size of the heading */
+  margin-bottom: 20px; /* Add space below the heading */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add space between the input fields */
+  width: 100%; /* Ensure the form group takes the full width */
+  max-width: 400px; /* Optional: Set a max-width for better layout control */
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.2em; /* Increase the font size of the labels */
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em; /* Increase the font size of the input fields */
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px; /* Add space above the preview image */
+}
+.submit-button {
+ margin-top: 2%;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  background-color: #2074d4;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+
+.submit-button:hover {
+  background-color: darkblue;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20%; /* Space between buttons */
+}

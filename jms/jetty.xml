@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="securityConstraint" class="org.eclipse.jetty.util.security.Constraint">
+        <property name="name" value="BASIC"/>
+        <property name="roles" value="admin"/>
+        <property name="authenticate" value="true"/>
+    </bean>
+
+    <bean id="securityHandler" class="org.eclipse.jetty.security.ConstraintSecurityHandler">
+        <property name="constraintMappings">
+            <list>
+                <bean class="org.eclipse.jetty.security.ConstraintMapping">
+                    <property name="pathSpec" value="/admin/*"/>
+                    <property name="constraint" ref="securityConstraint"/>
+                </bean>
+            </list>
+        </property>
+        <property name="loginService">
+            <bean class="org.eclipse.jetty.security.HashLoginService">
+                <property name="name" value="ActiveMQRealm"/>
+                <property name="config" value="${activemq.conf}/jetty-realm.properties"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="context" class="org.eclipse.jetty.server.handler.ContextHandlerCollection">
+        <property name="handlers">
+            <list>
+                <bean id="webApp" class="org.eclipse.jetty.webapp.WebAppContext">
+                    <property name="contextPath" value="/"/>
+                    <property name="war" value="${activemq.home}/webapps"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="server" class="org.eclipse.jetty.server.Server">
+        <property name="handler" ref="context"/>
+        <property name="connectors">
+            <list>
+                <bean id="connector" class="org.eclipse.jetty.server.ServerConnector">
+                    <constructor-arg index="0" ref="server"/>
+                    <property name="port" value="8161"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>

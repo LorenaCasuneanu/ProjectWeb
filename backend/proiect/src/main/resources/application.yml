@@ -1,0 +1,36 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  #datasource:
+    #url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}
+    #username: ${MYSQL_USER}
+    #password: ${MYSQL_PASSWORD}
+  datasource:
+     url: jdbc:mysql://localhost:3333/db
+     username: user
+     password: pass
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#  liquibase:
+#    enabled: true
+#    change-log: db/changelog/db.changelog-master.xml
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: epay.rachetutele@gmail.com
+    password: Itscoronatime19
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+server:
+  port: 8088

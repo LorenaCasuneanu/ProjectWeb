@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend/proiect" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-7.6-all/gradle-7.6" />
+        <option name="gradleJvm" value="corretto-17" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/backend/proiect" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/client" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-7.6-all/gradle-7.6" />
+        <option name="gradleJvm" value="corretto-17" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/client/clientMq" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-7.6-all/gradle-7.6" />
+        <option name="gradleJvm" value="corretto-17" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/client/clientMq" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/mq/broker" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../../Gradle/gradle-7.6-all/gradle-7.6" />
+        <option name="gradleJvm" value="corretto-17" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/mq/broker" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

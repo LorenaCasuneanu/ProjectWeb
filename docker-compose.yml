@@ -1,0 +1,113 @@
+
+services:
+
+  broker:
+    build:
+      context: mq
+      dockerfile: Dockerfile
+    container_name: broker
+    ports:
+      - 61616:61616
+    networks:
+      - broker-network
+    environment:
+      - BROKER_URL=tcp://0.0.0.0:61616
+
+  subscriber:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    depends_on:
+      - broker
+      - encrypt
+    container_name: client
+    networks:
+      - broker-network
+    environment:
+      - ACTIVEMQ_URL=tcp://broker:61616
+      - DATABASE_URL=tcp://db:3306
+
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - broker
+    networks:
+      - broker-network
+    ports:
+      - 8088:8088
+    environment:
+      - ACTIVEMQ_URL=tcp://broker:61616
+
+
+  frontend:
+      build:
+        context: frontend
+        dockerfile: Dockerfile
+      container_name: frontend
+      ports:
+        - 9095:9095
+      networks:
+        - broker-network
+
+  encrypt:
+    build:
+      context: encrypt
+      dockerfile: Dockerfile
+    container_name: encrypt
+    environment:
+      - OMPI_ALLOW_RUN_AS_ROOT=1
+      - OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
+    networks:
+      - broker-network
+
+  decrypt:
+    build:
+      context: decrypt
+      dockerfile: Dockerfile
+    container_name: decrypt
+    environment:
+      - OMPI_ALLOW_RUN_AS_ROOT=1
+      - OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
+    networks:
+      - broker-network
+
+
+  db:
+    image: mysql:8.0.28
+    container_name: abc
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+      MYSQL_ROOT_PASSWORD: mypass
+    ports:
+      - "3306:3306"
+
+  mysql:
+    image: critoma/linux-u20-dev-security-ism
+    container_name: mysql
+
+    volumes:
+          - db_data:/var/lib/mysql
+    networks:
+      - broker-network
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+      MYSQL_ROOT_PASSWORD: mypass
+    ports:
+      - "3306:3306"
+    command: ["mysqld"]
+
+networks:
+  broker-network:
+    driver: bridge
+  frontend:
+
+volumes:
+  db_data:
