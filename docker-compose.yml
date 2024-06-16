@@ -78,7 +78,7 @@ services:
 
   db:
     image: mysql:8.0.28
-    container_name: abc
+    container_name: db
     environment:
       MYSQL_DATABASE: mydb
       MYSQL_USER: myuser
@@ -86,6 +86,8 @@ services:
       MYSQL_ROOT_PASSWORD: mypass
     ports:
       - "3306:3306"
+    networks:
+      - broker-network
 
   mysql:
     image: critoma/linux-u20-dev-security-ism

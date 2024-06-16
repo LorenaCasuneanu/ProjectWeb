@@ -1,3 +1,5 @@
+Link-ul catre proiect: https://github.com/LorenaCasuneanu/ProjectWeb
+
 O scurt descriere a proiectului:
 * frontend :
 	- am folosit angular pentru implementare

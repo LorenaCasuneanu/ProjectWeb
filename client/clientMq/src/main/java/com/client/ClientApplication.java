@@ -16,11 +16,11 @@ public class ClientApplication {
 
 
 
-//    static ImageRepository imageRepository;
-//
-//	ClientApplication(ImageRepository imageRepository) {
-//		ClientApplication.imageRepository = imageRepository;
-//	}
+	static ImageRepository imageRepository;
+
+	ClientApplication(ImageRepository imageRepository) {
+		ClientApplication.imageRepository = imageRepository;
+	}
 
 
 	public static void main(String[] args) throws Exception {
@@ -87,14 +87,12 @@ public class ClientApplication {
 		System.out.println(command);
 
 		try {
-//			Image image = new Image();
-//			image.setImage("avd");
-//			imageRepository.save(image);
+
 
 			ProcessBuilder processBuilder = new ProcessBuilder("/bin/sh", "-c", command);
 			Process process = null;
 			try {
-				 process = processBuilder.start();
+				process = processBuilder.start();
 			}catch (Error e) {
 				System.out.println(e.getMessage());
 			}
@@ -103,16 +101,20 @@ public class ClientApplication {
 			// Reading the output from the command
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			String line;
-
+			StringBuilder stringBuilder = new StringBuilder();
 
 
 			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
+				stringBuilder.append(line);
 			}
 
 			int exitCode = process.waitFor();
 			if (exitCode != 0) {
 				System.err.println("Error: Encrypt process exited with code " + exitCode);
+			} else {
+				Image image = new Image();
+				image.setImage(stringBuilder.toString());
+				imageRepository.save(image);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
